@@ -6,11 +6,13 @@ set_prompt() {
         color1=""
         color2=""
     else
-        symbol=$3
         color1=$1
         color2=$2
+        symbol=$3
     fi
-    PS1="$color2{{$color1\u$color2$symbol$color1 \h$color2}}$nc  "
+    
+    PS1="$symbol\[$color1\]\u\[$color2\] $|\[$nc\]: "
+    
     return 0
 }
 
@@ -25,7 +27,7 @@ prompt_init() {
         unset symbol
     fi
     if [[ "$uid" -eq 0 ]]; then
-        set_prompt $red $purple $sym_nuke
+        set_prompt $red $yellow $sym_skull
     else
         set_prompt $cyan $green $sym_bio
     fi
